@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { ShoppinglistsPage } from '../shoppinglists/shoppinglists';
 
 @Component({
   selector: 'page-home',
@@ -12,7 +13,10 @@ export class HomePage {
   }
 
   goto(path: string) {
-    console.log(path);
+    switch(path) {
+      case "shoppinglists":
+        this.navCtrl.push(ShoppinglistsPage);
+    }
   }
 
 }
