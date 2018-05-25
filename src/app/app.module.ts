@@ -11,6 +11,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ShoppinglistsPage } from '../pages/shoppinglists/shoppinglists';
+import { OintyApiProvider } from '../providers/ointy-api/ointy-api';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ShoppinglistsPage } from '../pages/shoppinglists/shoppinglists';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    OintyApiProvider
   ]
 })
 export class AppModule {}
