@@ -13,6 +13,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ShoppinglistsPage } from '../pages/shoppinglists/shoppinglists';
 import { OintyApiProvider } from '../providers/ointy-api/ointy-api';
 
+import { Geolocation } from '@ionic-native/geolocation';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -39,7 +41,8 @@ import { OintyApiProvider } from '../providers/ointy-api/ointy-api';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    OintyApiProvider
+    OintyApiProvider,
+    Geolocation
   ]
 })
 export class AppModule {}
