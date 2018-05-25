@@ -15,11 +15,22 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ShoppinglistsPage {
 
+  items: Array<string> = [];
+
+  newItem: string = "";
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.items.push("Item 1");
+    this.items.push("Item 2");
+    this.items.push("Item 3");
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ShoppinglistsPage');
   }
 
+  addItem() {
+    this.items.push(this.newItem);
+    this.newItem = "";
+  }
 }
