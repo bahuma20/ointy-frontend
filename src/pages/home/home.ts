@@ -11,4 +11,8 @@ export class HomePage {
 
   }
 
+  goto(path: string) {
+    console.log(path);
+  }
+
 }

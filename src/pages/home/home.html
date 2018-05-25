@@ -1,17 +1,23 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>OINTY</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+  <p>Welcome back, NAME</p>
+  <ion-list>
+    <button ion-item (click)="goto('requests')">
+      <ion-icon name="notifications" item-start></ion-icon>
+      Einkaufsfragen / Requests
+    </button>
+    <button ion-item (click)="goto('accepted-requests')">
+      <ion-icon name="cart" item-start></ion-icon>
+      Einkaufslisten angenommen
+    </button>
+    <button ion-item (click)="goto('create-list')">
+      <ion-icon name="list-box" item-start></ion-icon>
+      Liste erstellen / create list
+    </button>
+  </ion-list>
 </ion-content>
