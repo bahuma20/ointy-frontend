@@ -74,6 +74,12 @@ export class HomePage {
     this.localShoppingLists = data;
   }
 
+  public closeShoppingList(id: number) {
+    this.ointy.closeShoppingList(id).subscribe(()=>{
+      console.log('list closed');
+    });
+  }
+
   public getStaticMap(address: Address) {
     if (!address) {
       return '';

@@ -40,6 +40,10 @@ export class OintyApiProvider {
   getClaimedShoppingList() {
     return this.http.get<ShoppingList>(`${this.host}/getClaimedShoppingList/${this.userId}`);
   }
+
+  closeShoppingList(id: number) {
+    return this.http.post(`${this.host}/closeShoppingList/${id}`, {});
+  }
 }
 
 export interface ShoppingList {
