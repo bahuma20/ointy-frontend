@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { OintyApiProvider, ShoppingListItem, ShoppingList } from '../../providers/ointy-api/ointy-api';
 
 /**
  * Generated class for the ShoppinglistsPage page.
@@ -8,21 +9,26 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+@IonicPage({
+  segment: 'detail/:id'
+})
 @Component({
   selector: 'page-shoppinglists',
   templateUrl: 'shoppinglists.html',
 })
 export class ShoppinglistsPage {
 
-  items: Array<string> = [];
+  items: Array<ShoppingListItem> = [];
 
   newItem: string = "";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.items.push("Item 1");
-    this.items.push("Item 2");
-    this.items.push("Item 3");
+  shoppingList: ShoppingList = null;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private ointy: OintyApiProvider) {
+    ointy.loadShoppingListData(navParams.get('id')).then(data => {
+      this.items = data.items;
+      this.shoppingList = data.shoppingList;
+    });
   }
 
   ionViewDidLoad() {
@@ -30,7 +36,11 @@ export class ShoppinglistsPage {
   }
 
   addItem() {
-    this.items.push(this.newItem);
+    this.items.push({
+      id: 123,
+      name: this.newItem,
+    });
+
     this.newItem = "";
   }
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ShoppinglistsPage } from '../shoppinglists/shoppinglists';
 import { Geolocation } from '@ionic-native/geolocation';
+import { OintyApiProvider, ShoppingList } from '../../providers/ointy-api/ointy-api';
 
 @Component({
   selector: 'page-home',
@@ -11,43 +12,22 @@ export class HomePage {
 
   public shoppingLists: Array<ShoppingList>;
 
-  constructor(public navCtrl: NavController, private geolocation: Geolocation) {
+  constructor(public navCtrl: NavController, private geolocation: Geolocation, private ointy: OintyApiProvider) {
     this.geolocation.getCurrentPosition().then((resp) => {
       console.log(resp.coords.latitude, resp.coords.longitude);
      }).catch((error) => {
        console.log('Error getting location', error);
      });
 
-     this.shoppingLists = [
-       {
-         id: 1,
-         name: "Grocery Store",
-         tag: "grocery_store",
-         icon: "cart",
-       },
-       {
-        id: 2,
-        name: "Pharmacy",
-        tag: "pharmacy",
-        icon: "medkit",
-      },
-     ]
+     ointy.shoppinglistsLoad().then(lists => {
+      this.shoppingLists = lists;
+     });
   }
 
   public gotoList(id: number) {
-    return id;
-    // switch(path) {
-    //   case "shoppinglists":
-    //     this.navCtrl.push(ShoppinglistsPage);
-    // }
+    this.navCtrl.push(ShoppinglistsPage, {
+      id: id
+    });
   }
 
-}
-
-
-interface ShoppingList {
-  id: number;
-  name: string;
-  tag: string;
-  icon: string;
 }

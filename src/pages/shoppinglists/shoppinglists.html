@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Shoppinglist</ion-title>
+    <ion-title>{{shoppingList.name}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -17,13 +17,13 @@
   <ion-list>
     <ion-item-sliding *ngFor="let item of items">
       <ion-item>
-        <h2>{{item}}</h2>
+        <h2>{{item.name}}</h2>
       </ion-item>
       <ion-item-options side="right">
         <button ion-button color="primary">
           <ion-icon name="edit"></ion-icon>
           Edit
-        </button>        
+        </button>
         <button ion-button color="danger">
           <ion-icon name="delete"></ion-icon>
           Delete
@@ -31,7 +31,7 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
-  
+
   <ion-list>
     <ion-item>
       <ion-input type="text" placeholder="New Item" [(ngModel)]="newItem" ></ion-input>
