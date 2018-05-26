@@ -5,6 +5,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { OintyApiProvider, ShoppingList } from '../../providers/ointy-api/ointy-api';
 
 import { TAGS } from '../../providers/ointy-api/ointy-api';
+import { NearbyPlacesProvider } from '../../providers/nearby-places/nearby-places';
 
 @Component({
   selector: 'page-home',
@@ -37,16 +38,12 @@ export class HomePage {
     },
   };
 
-  constructor(public navCtrl: NavController, private geolocation: Geolocation, private ointy: OintyApiProvider) {
-    this.geolocation.getCurrentPosition().then((resp) => {
-      console.log(resp.coords.latitude, resp.coords.longitude);
-     }).catch((error) => {
-       console.log('Error getting location', error);
-     });
-
-     ointy.shoppinglistsLoad().subscribe(data => {
+  constructor(public navCtrl: NavController, private ointy: OintyApiProvider, private nearbyPlaces: NearbyPlacesProvider) {
+    ointy.shoppinglistsLoad().subscribe(data => {
       this.shoppingLists = data;
     });
+
+    nearbyPlaces.startChecking();
   }
 
   public gotoList(id: number) {

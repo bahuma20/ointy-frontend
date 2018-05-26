@@ -16,6 +16,7 @@ import { OintyApiProvider } from '../providers/ointy-api/ointy-api';
 import { Geolocation } from '@ionic-native/geolocation';
 
 import {HttpClientModule} from '@angular/common/http';
+import { NearbyPlacesProvider } from '../providers/nearby-places/nearby-places';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import {HttpClientModule} from '@angular/common/http';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     OintyApiProvider,
-    Geolocation
+    Geolocation,
+    NearbyPlacesProvider
   ]
 })
 export class AppModule {}
