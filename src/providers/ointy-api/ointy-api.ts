@@ -28,6 +28,10 @@ export class OintyApiProvider {
   addItemToShoppingList(shoppinglistId: number, itemName: string) {
     this.http.post(`${this.host}/shoppingList/${shoppinglistId}/item`,itemName).subscribe();
   }
+
+  removeItemByIndex(shoppinglistId: number, index: number) {
+    this.http.delete(`${this.host}/shoppingList/${shoppinglistId}/item/{index}`).subscribe();
+  }
 }
 
 export interface ShoppingList {
