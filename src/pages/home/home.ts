@@ -5,7 +5,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { OintyApiProvider, ShoppingList } from '../../providers/ointy-api/ointy-api';
 
 import { TAGS } from '../../providers/ointy-api/ointy-api';
-import { NearbyPlacesProvider } from '../../providers/nearby-places/nearby-places';
+import { LocalAwarenessProvider } from '../../providers/local-awareness/local-awareness';
 
 @Component({
   selector: 'page-home',
@@ -38,12 +38,12 @@ export class HomePage {
     },
   };
 
-  constructor(public navCtrl: NavController, private ointy: OintyApiProvider, private nearbyPlaces: NearbyPlacesProvider) {
+  constructor(public navCtrl: NavController, private ointy: OintyApiProvider, private localAwareness: LocalAwarenessProvider) {
     ointy.shoppinglistsLoad().subscribe(data => {
       this.shoppingLists = data;
     });
 
-    nearbyPlaces.startChecking();
+    localAwareness.startChecking();
   }
 
   public gotoList(id: number) {

@@ -4,20 +4,18 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { OintyApiProvider } from '../ointy-api/ointy-api';
 
 /*
-  Generated class for the NearbyPlacesProvider provider.
+  Generated class for the LocalAwarenessProvider provider.
 
   See https://angular.io/guide/dependency-injection for more info on providers
   and Angular DI.
 */
 @Injectable()
-export class NearbyPlacesProvider {
-
-  private API_KEY = "AIzaSyDY1cPfXT1w_iywCZFFMuXFkPm3K3XDT-c";
+export class LocalAwarenessProvider {
 
   private interval;
 
   constructor(public http: HttpClient, private geolocation: Geolocation, private ointy: OintyApiProvider) {
-    console.log('Hello NearbyPlacesProvider Provider');
+    console.log('Hello LocalAwarenessProvider Provider');
 
     this.startChecking();
   }
