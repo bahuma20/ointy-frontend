@@ -12,9 +12,9 @@
 
     <ion-list>
       <button ion-item *ngFor="let list of shoppingLists" (click)="gotoList(list.id)">
-        <ion-icon name="{{list.icon}}" item-start></ion-icon>
-        <h2>{{list.tag}}</h2>
-        <p>(3 Items)</p>
+        <ion-icon name="{{TAGS[list.tag].icon}}" item-start></ion-icon>
+        <h2>{{TAGS[list.tag].name}}</h2>
+        <p>({{list.items.length}} Items)</p>
       </button>
     </ion-list>
   </ion-card>
