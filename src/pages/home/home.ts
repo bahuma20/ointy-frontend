@@ -6,6 +6,7 @@ import { OintyApiProvider, ShoppingList } from '../../providers/ointy-api/ointy-
 
 import { TAGS } from '../../providers/ointy-api/ointy-api';
 import { LocalAwarenessProvider } from '../../providers/local-awareness/local-awareness';
+import { JobDetailPage } from '../job-detail/job-detail';
 
 @Component({
   selector: 'page-home',
@@ -48,6 +49,12 @@ export class HomePage {
 
   public gotoList(id: number) {
     this.navCtrl.push(ShoppinglistsPage, {
+      id: id
+    });
+  }
+
+  public gotoListDetail(id: number) {
+    this.navCtrl.push(JobDetailPage, {
       id: id
     });
   }

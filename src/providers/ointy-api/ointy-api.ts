@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class OintyApiProvider {
 
-  host: string = "http://172.16.60.66:8080";
+  host: string = "http://172.16.60.245:8080";
   userId: number = 1;
 
   constructor(private http: HttpClient) {
@@ -40,14 +40,7 @@ export interface ShoppingList {
     id: number,
     firstName: string,
     lastName: string,
-    address: {
-      latitude: number,
-      longitude: number,
-      zip: number,
-      city: string,
-      street: string,
-      houseNumber: string
-    },
+    address: Address,
   },
   bounty: number,
   tag: string,
@@ -75,4 +68,13 @@ export const TAGS = {
     name: "Sex Shop",
     icon: ""
   },
+}
+
+export interface Address {
+  latitude: number,
+  longitude: number,
+  zip: number,
+  city: string,
+  street: string,
+  houseNumber: string
 }

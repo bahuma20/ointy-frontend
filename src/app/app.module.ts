@@ -17,6 +17,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 
 import { HttpClientModule } from '@angular/common/http';
 import { LocalAwarenessProvider } from '../providers/local-awareness/local-awareness';
+import { JobDetailPage } from '../pages/job-detail/job-detail';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { LocalAwarenessProvider } from '../providers/local-awareness/local-aware
     ContactPage,
     HomePage,
     TabsPage,
-    ShoppinglistsPage
+    ShoppinglistsPage,
+    JobDetailPage
   ],
   imports: [
     BrowserModule,
@@ -39,7 +41,8 @@ import { LocalAwarenessProvider } from '../providers/local-awareness/local-aware
     ContactPage,
     HomePage,
     TabsPage,
-    ShoppinglistsPage
+    ShoppinglistsPage,
+    JobDetailPage
   ],
   providers: [
     StatusBar,

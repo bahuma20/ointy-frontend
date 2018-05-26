@@ -1,0 +1,32 @@
+<!--
+  Generated template for the JobDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Job details</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="../../assets/imgs/avatar.png">
+      </ion-avatar>
+      <h2>{{shoppingList?.owner.firstName}} {{shoppingList?.owner.lastName}}</h2>
+      <p>{{shoppingList?.owner.address.street}} {{shoppingList?.owner.address.houseNumber}}<br>{{shoppingList?.owner.address.zip}} {{shoppingList?.owner.address.city}}</p>
+    </ion-item>
+
+    <img src="{{getStaticMap(shoppingList?.owner.address)}}">
+  </ion-card>
+
+  <ion-card>
+    <ion-card-title>Shoppinglist</ion-card-title>
+    <ion-item *ngFor="let item of shoppingList?.items">{{item}}</ion-item>
+  </ion-card>
+</ion-content>
