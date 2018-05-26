@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation';
+import { OintyApiProvider } from '../ointy-api/ointy-api';
 
 /*
   Generated class for the NearbyPlacesProvider provider.
@@ -15,7 +16,7 @@ export class NearbyPlacesProvider {
 
   private interval;
 
-  constructor(public http: HttpClient, private geolocation: Geolocation) {
+  constructor(public http: HttpClient, private geolocation: Geolocation, private ointy: OintyApiProvider) {
     console.log('Hello NearbyPlacesProvider Provider');
 
     this.startChecking();
@@ -23,7 +24,7 @@ export class NearbyPlacesProvider {
 
   public startChecking() {
     this.interval = setInterval(this.check, 60 * 60 * 1000);
-    this.check();
+    // this.check();
   }
 
   public stopChecking() {
@@ -34,7 +35,7 @@ export class NearbyPlacesProvider {
     this.geolocation.getCurrentPosition().then((resp) => {
       console.log(resp.coords.latitude, resp.coords.longitude);
 
-      return this.http.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${this.API_KEY}&location=${resp.coords.latitude},${resp.coords.longitude}&radius=100&rankby=distance`).toPromise()
+      return this.ointy.getListsRelevantForUser(resp.coords.latitude, resp.coords.longitude).toPromise()
      }).then(data => {
        console.log(data);
      }).catch((error) => {
