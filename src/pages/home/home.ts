@@ -4,6 +4,9 @@ import { ShoppinglistsPage } from '../shoppinglists/shoppinglists';
 import { Geolocation } from '@ionic-native/geolocation';
 import { OintyApiProvider, ShoppingList } from '../../providers/ointy-api/ointy-api';
 
+import { TAGS } from '../../providers/ointy-api/ointy-api';
+import { NearbyPlacesProvider } from '../../providers/nearby-places/nearby-places';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -12,16 +15,35 @@ export class HomePage {
 
   public shoppingLists: Array<ShoppingList>;
 
-  constructor(public navCtrl: NavController, private geolocation: Geolocation, private ointy: OintyApiProvider) {
-    this.geolocation.getCurrentPosition().then((resp) => {
-      console.log(resp.coords.latitude, resp.coords.longitude);
-     }).catch((error) => {
-       console.log('Error getting location', error);
-     });
+  public TAGS = {
+    GROCERY_STORE: {
+      name: "Grocery Store",
+      icon: "cart"
+    },
+    BAKERY: {
+      name: "Bakery",
+      icon: "pizza"
+    },
+    PHARMACY: {
+      name: "Pharmacy",
+      icon: "medkit"
+    },
+    HARDWARE_STORE: {
+      name: "Hardware Store",
+      icon: "hammer"
+    },
+    SEX_SHOP: {
+      name: "Sex Shop",
+      icon: ""
+    },
+  };
 
-     ointy.shoppinglistsLoad().subscribe(data => {
+  constructor(public navCtrl: NavController, private ointy: OintyApiProvider, private nearbyPlaces: NearbyPlacesProvider) {
+    ointy.shoppinglistsLoad().subscribe(data => {
       this.shoppingLists = data;
     });
+
+    nearbyPlaces.startChecking();
   }
 
   public gotoList(id: number) {

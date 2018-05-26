@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { OintyApiProvider, ShoppingList } from '../../providers/ointy-api/ointy-api';
+import { TAGS } from '../../providers/ointy-api/ointy-api';
 
 /**
  * Generated class for the ShoppinglistsPage page.
@@ -20,6 +21,29 @@ export class ShoppinglistsPage {
   public shoppingList: ShoppingList;
 
   public newItem: string;
+
+  public TAGS = {
+    GROCERY_STORE: {
+      name: "Grocery Store",
+      icon: ""
+    },
+    BAKERY: {
+      name: "Bakery",
+      icon: ""
+    },
+    PHARMACY: {
+      name: "Pharmacy",
+      icon: ""
+    },
+    HARDWARE_STORE: {
+      name: "Hardware Store",
+      icon: ""
+    },
+    SEX_SHOP: {
+      name: "Sex Shop",
+      icon: ""
+    },
+  };
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public ointy: OintyApiProvider) {
     ointy.loadShoppingList(navParams.get('id')).subscribe(shoppingList => {
