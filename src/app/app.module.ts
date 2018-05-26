@@ -15,8 +15,8 @@ import { OintyApiProvider } from '../providers/ointy-api/ointy-api';
 
 import { Geolocation } from '@ionic-native/geolocation';
 
-import {HttpClientModule} from '@angular/common/http';
-import { NearbyPlacesProvider } from '../providers/nearby-places/nearby-places';
+import { HttpClientModule } from '@angular/common/http';
+import { LocalAwarenessProvider } from '../providers/local-awareness/local-awareness';
 
 @NgModule({
   declarations: [
@@ -47,7 +47,7 @@ import { NearbyPlacesProvider } from '../providers/nearby-places/nearby-places';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     OintyApiProvider,
     Geolocation,
-    NearbyPlacesProvider
+    LocalAwarenessProvider
   ]
 })
 export class AppModule {}
