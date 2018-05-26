@@ -5,19 +5,19 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card color="danger">
+  <ion-card color="danger" *ngFor="let shoppingList of localShoppingLists">
 
     <ion-item color="danger">
       <ion-avatar item-start>
         <img src="../../assets/imgs/avatar.png">
       </ion-avatar>
-      <h2>Ol' Granny needs your help</h2>
-      <p>3 Items from a grocery store.</p>
+      <h2>{{shoppingList.owner.firstName}} {{shoppingList.owner.lastName}} needs your help</h2>
+      <p>{{shoppingList.items.length}} Items from a {{TAGS[shoppingList.tag]}}.</p>
     </ion-item>
 
     <ion-row>
       <ion-col>
-        <button ion-button clear color="light" (click)="gotoListDetail(2)">View details</button>
+        <button ion-button clear color="light" (click)="gotoListDetail(shoppingList.id)">View details</button>
       </ion-col>
     </ion-row>
 

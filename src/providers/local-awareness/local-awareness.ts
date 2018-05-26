@@ -14,10 +14,16 @@ export class LocalAwarenessProvider {
 
   private interval;
 
+  private callback: Function;
+
   constructor(public http: HttpClient, private geolocation: Geolocation, private ointy: OintyApiProvider) {
     console.log('Hello LocalAwarenessProvider Provider');
 
     this.startChecking();
+  }
+
+  setCallback(callback: Function) {
+    this.callback = callback;
   }
 
   public startChecking() {
@@ -34,11 +40,14 @@ export class LocalAwarenessProvider {
       console.log(resp.coords.latitude, resp.coords.longitude);
 
       return this.ointy.getListsRelevantForUser(resp.coords.latitude, resp.coords.longitude).toPromise()
-     }).then(data => {
-       console.log(data);
-     }).catch((error) => {
-       console.log('Error getting location', error);
-     });
-  }
+    }).then(data => {
+      console.log(data);
 
+      if (data.length > 0) {
+        this.callback(data);
+      }
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
+  }
 }

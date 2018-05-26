@@ -16,6 +16,8 @@ export class HomePage {
 
   public shoppingLists: Array<ShoppingList>;
 
+  public localShoppingLists: ShoppingList[];
+
   public TAGS = {
     GROCERY_STORE: {
       name: "Grocery Store",
@@ -44,6 +46,9 @@ export class HomePage {
       this.shoppingLists = data;
     });
 
+
+    localAwareness.setCallback(this.onLocalShoppinglist)
+
     localAwareness.startChecking();
   }
 
@@ -57,6 +62,10 @@ export class HomePage {
     this.navCtrl.push(JobDetailPage, {
       id: id
     });
+  }
+
+  public onLocalShoppinglist(data: Array<ShoppingList>) {
+    this.localShoppingLists = data;
   }
 
 }
