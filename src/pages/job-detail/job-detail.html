@@ -26,7 +26,22 @@
   </ion-card>
 
   <ion-card>
-    <ion-card-title>Shoppinglist</ion-card-title>
-    <ion-item *ngFor="let item of shoppingList?.items">{{item}}</ion-item>
+    <ion-card-header>
+      <strong>Shoppinglist</strong> ({{shoppingList?.items.length}} Items)
+    </ion-card-header>
+    <ul>
+      <li *ngFor="let item of shoppingList?.items">{{item}}</li>
+    </ul>
+  </ion-card>
+
+  <ion-card>
+    <ion-row>
+      <ion-col text-left>
+        <button ion-button clear>Discard</button>
+      </ion-col>
+      <ion-col text-right>
+        <button ion-button>I bring it!</button>
+      </ion-col>
+    </ion-row>
   </ion-card>
 </ion-content>
