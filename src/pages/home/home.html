@@ -5,19 +5,17 @@
 </ion-header>
 
 <ion-content padding>
-  <p>Welcome back, NAME</p>
-  <ion-list>
-    <button ion-item (click)="goto('requests')">
-      <ion-icon name="notifications" item-start></ion-icon>
-      Einkaufsfragen / Requests
-    </button>
-    <button ion-item (click)="goto('accepted-requests')">
-      <ion-icon name="cart" item-start></ion-icon>
-      Einkaufslisten angenommen
-    </button>
-    <button ion-item (click)="goto('shoppinglists')">
-      <ion-icon name="list-box" item-start></ion-icon>
-      Meine Einkaufsliste
-    </button>
-  </ion-list>
+  <ion-card>
+    <ion-card-header>
+      Your Shoppinglists
+    </ion-card-header>
+
+    <ion-list>
+      <button ion-item *ngFor="let list of shoppingLists" (click)="gotoList(list.id)">
+        <ion-icon name="{{list.icon}}" item-start></ion-icon>
+        <h2>{{list.name}}</h2>
+        <p>(3 Items)</p>
+      </button>
+    </ion-list>
+  </ion-card>
 </ion-content>

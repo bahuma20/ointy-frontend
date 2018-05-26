@@ -9,19 +9,45 @@ import { Geolocation } from '@ionic-native/geolocation';
 })
 export class HomePage {
 
+  public shoppingLists: Array<ShoppingList>;
+
   constructor(public navCtrl: NavController, private geolocation: Geolocation) {
     this.geolocation.getCurrentPosition().then((resp) => {
       console.log(resp.coords.latitude, resp.coords.longitude);
      }).catch((error) => {
        console.log('Error getting location', error);
      });
+
+     this.shoppingLists = [
+       {
+         id: 1,
+         name: "Grocery Store",
+         tag: "grocery_store",
+         icon: "cart",
+       },
+       {
+        id: 2,
+        name: "Pharmacy",
+        tag: "pharmacy",
+        icon: "medkit",
+      },
+     ]
   }
 
-  goto(path: string) {
-    switch(path) {
-      case "shoppinglists":
-        this.navCtrl.push(ShoppinglistsPage);
-    }
+  public gotoList(id: number) {
+    return id;
+    // switch(path) {
+    //   case "shoppinglists":
+    //     this.navCtrl.push(ShoppinglistsPage);
+    // }
   }
 
+}
+
+
+interface ShoppingList {
+  id: number;
+  name: string;
+  tag: string;
+  icon: string;
 }
