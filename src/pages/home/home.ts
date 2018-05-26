@@ -19,9 +19,10 @@ export class HomePage {
        console.log('Error getting location', error);
      });
 
-     ointy.shoppinglistsLoad().subscribe(lists => {
-      this.shoppingLists = lists;
-     });
+     ointy.shoppinglistsLoad().subscribe(data => {
+      // data is now an instance of type ItemsResponse, so you can do this:
+      this.shoppingLists = data;
+    });
   }
 
   public gotoList(id: number) {

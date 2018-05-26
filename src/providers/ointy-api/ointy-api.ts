@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 /*
   Generated class for the OintyApiProvider provider.
@@ -13,12 +14,12 @@ export class OintyApiProvider {
   host: string = "http://172.16.60.245:8080";
   userId: number = 1;
 
-  constructor(public http: Http) {
+  constructor(private http: HttpClient) {
     console.log('Hello OintyApiProvider Provider');
   }
 
   shoppinglistsLoad() {
-    return this.http.get(`${this.host}/${this.userId}/shoppingList`);
+    return this.http.get<Array<ShoppingList>>(`${this.host}/${this.userId}/shoppingList`);
   }
 
   loadShoppingListData(id: number) {

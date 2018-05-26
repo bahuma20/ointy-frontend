@@ -15,7 +15,7 @@ import { OintyApiProvider } from '../providers/ointy-api/ointy-api';
 
 import { Geolocation } from '@ionic-native/geolocation';
 
-import { HttpModule } from '@angular/http';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,7 @@ import { HttpModule } from '@angular/http';
   ],
   imports: [
     BrowserModule,
-    HttpModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
