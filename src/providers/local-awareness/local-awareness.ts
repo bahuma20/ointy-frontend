@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation';
-import { OintyApiProvider } from '../ointy-api/ointy-api';
+import { OintyApiProvider, ShoppingList } from '../ointy-api/ointy-api';
+import { Observable } from "rxjs/Observable"
 
 /*
   Generated class for the LocalAwarenessProvider provider.
@@ -27,8 +28,27 @@ export class LocalAwarenessProvider {
   }
 
   public startChecking() {
-    this.interval = setInterval(this.check, 60 * 60 * 1000);
-    this.check();
+    return new Observable<Array<ShoppingList>>((observer) => {
+      let checking = () => {
+        this.geolocation.getCurrentPosition().then((resp) => {
+          console.log(resp.coords.latitude, resp.coords.longitude);
+          // return this.ointy.getListsRelevantForUser(resp.coords.latitude, resp.coords.longitude).toPromise()
+          return this.ointy.getListsRelevantForUser(49.0334298,11.5804938).toPromise()
+        }).then(data => {
+          console.log(data);
+
+          if (data.length > 0) {
+            observer.next(data);
+          }
+        }).catch((error) => {
+          console.log('Error getting location', error);
+        });
+      }
+
+      this.interval = setInterval(checking, 60 * 1000);
+
+      checking();
+    });
   }
 
   public stopChecking() {
@@ -39,7 +59,9 @@ export class LocalAwarenessProvider {
     this.geolocation.getCurrentPosition().then((resp) => {
       console.log(resp.coords.latitude, resp.coords.longitude);
 
-      return this.ointy.getListsRelevantForUser(resp.coords.latitude, resp.coords.longitude).toPromise()
+
+      // return this.ointy.getListsRelevantForUser(resp.coords.latitude, resp.coords.longitude).toPromise()
+      return this.ointy.getListsRelevantForUser(49.0334298,11.5804938).toPromise()
     }).then(data => {
       console.log(data);
 

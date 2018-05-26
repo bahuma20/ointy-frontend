@@ -52,10 +52,9 @@ export class HomePage {
       this.claimedShoppingLists = data;
     });
 
-
-    localAwareness.setCallback(this.onLocalShoppinglist)
-
-    localAwareness.startChecking();
+    localAwareness.startChecking().subscribe(data => {
+      this.localShoppingLists = data;
+    });
   }
 
   public gotoList(id: number) {
@@ -71,6 +70,7 @@ export class HomePage {
   }
 
   public onLocalShoppinglist(data: Array<ShoppingList>) {
+    console.log(this);
     this.localShoppingLists = data;
   }
 
