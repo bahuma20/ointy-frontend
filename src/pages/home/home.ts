@@ -20,7 +20,6 @@ export class HomePage {
      });
 
      ointy.shoppinglistsLoad().subscribe(data => {
-      // data is now an instance of type ItemsResponse, so you can do this:
       this.shoppingLists = data;
     });
   }

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
 
 /*
@@ -22,37 +21,9 @@ export class OintyApiProvider {
     return this.http.get<Array<ShoppingList>>(`${this.host}/${this.userId}/shoppingList`);
   }
 
-  loadShoppingListData(id: number) {
-    return new Promise<ShoppingList>((resolve, reject) => {
-      resolve({
-        shoppingList: {
-          id: 1,
-          name: "Grocery Store",
-          tag: "grocery_store",
-          icon: "cart",
-        },
-        items: [
-          {
-            id: 1,
-            name: "Butter"
-          },
-          {
-            id: 2,
-            name: "Käse"
-          },
-          {
-            id: 3,
-            name: "Milch"
-          },
-        ]
-      })
-    })
+  loadShoppingList(shoppinglistId: number) {
+    return this.http.get<ShoppingList>(`${this.host}/shoppingList/${shoppinglistId}`);
   }
-
-  loadRelevantShoppinglists() {
-
-  }
-
 }
 
 export interface ShoppingList {

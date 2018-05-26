@@ -17,15 +17,15 @@ import { OintyApiProvider, ShoppingList } from '../../providers/ointy-api/ointy-
   templateUrl: 'shoppinglists.html',
 })
 export class ShoppinglistsPage {
+  public shoppingList: ShoppingList;
 
-
-  shoppingList: ShoppingList = null;
+  public newItem: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private ointy: OintyApiProvider) {
-    // ointy.loadShoppingListData(navParams.get('id')).then(data => {
-    //   this.items = data.items;
-    //   this.shoppingList = data.shoppingList;
-    // });
+    ointy.loadShoppingList(navParams.get('id')).subscribe(shoppingList => {
+      console.log(shoppingList);
+      this.shoppingList = shoppingList;
+    });
   }
 
   ionViewDidLoad() {
@@ -33,11 +33,8 @@ export class ShoppinglistsPage {
   }
 
   addItem() {
-    // this.items.push({
-    //   id: 123,
-    //   name: this.newItem,
-    // });
+    this.shoppingList.items.push(this.newItem);
 
-    // this.newItem = "";
+    this.newItem = "";
   }
 }
