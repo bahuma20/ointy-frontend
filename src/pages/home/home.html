@@ -13,7 +13,7 @@
     <ion-list>
       <button ion-item *ngFor="let list of shoppingLists" (click)="gotoList(list.id)">
         <ion-icon name="{{list.icon}}" item-start></ion-icon>
-        <h2>{{list.name}}</h2>
+        <h2>{{list.tag}}</h2>
         <p>(3 Items)</p>
       </button>
     </ion-list>

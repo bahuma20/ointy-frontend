@@ -19,7 +19,7 @@ export class HomePage {
        console.log('Error getting location', error);
      });
 
-     ointy.shoppinglistsLoad().then(lists => {
+     ointy.shoppinglistsLoad().subscribe(lists => {
       this.shoppingLists = lists;
      });
   }

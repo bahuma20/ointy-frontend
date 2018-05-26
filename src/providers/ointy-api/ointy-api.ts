@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
 
 /*
   Generated class for the OintyApiProvider provider.
@@ -9,34 +10,19 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class OintyApiProvider {
 
-  host: string = "172.16.60.245:8080";
+  host: string = "http://172.16.60.245:8080";
   userId: number = 1;
 
-  constructor() {
+  constructor(public http: Http) {
     console.log('Hello OintyApiProvider Provider');
   }
 
   shoppinglistsLoad() {
-    return new Promise<Array<ShoppingList>>((resolve, reject) => {
-      resolve([
-        {
-          id: 1,
-          name: "Grocery Store",
-          tag: "grocery_store",
-          icon: "cart",
-        },
-        {
-          id: 2,
-          name: "Pharmacy",
-          tag: "pharmacy",
-          icon: "medkit",
-        },
-      ])
-    })
+    return this.http.get(`${this.host}/${this.userId}/shoppingList`);
   }
 
   loadShoppingListData(id: number) {
-    return new Promise<ShoppingListData>((resolve, reject) => {
+    return new Promise<ShoppingList>((resolve, reject) => {
       resolve({
         shoppingList: {
           id: 1,
@@ -69,18 +55,21 @@ export class OintyApiProvider {
 }
 
 export interface ShoppingList {
-  id: number;
-  name: string;
-  tag: string;
-  icon: string;
-}
-
-export interface ShoppingListItem {
-  id: number;
-  name: string;
-}
-
-export interface ShoppingListData {
-  shoppingList: ShoppingList,
-  items: Array<ShoppingListItem>,
+  id: number,
+  owner: {
+    id: number,
+    firstName: string,
+    lastName: string,
+    address: {
+      latitude: number,
+      longitude: number,
+      zip: number,
+      city: string,
+      street: string,
+      houseNumber: string
+    },
+  },
+  bounty: number,
+  tag: string,
+  items: Array<string>,
 }
