@@ -22,7 +22,7 @@ export class LocalAwarenessProvider {
 
   public startChecking() {
     this.interval = setInterval(this.check, 60 * 60 * 1000);
-    // this.check();
+    this.check();
   }
 
   public stopChecking() {
