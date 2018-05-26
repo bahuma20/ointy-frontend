@@ -24,10 +24,43 @@
   </ion-card>
 
 
+  <ion-card>
+    <ion-card-header>
+      <strong>Your current delivery</strong>
+    </ion-card-header>
+
+    <img src="https://maps.googleapis.com/maps/api/staticmap?center=unterbürg&zoom=15&scale=1&size=400x250&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7Cunterbürg">
+
+    <ion-fab right top>
+      <button ion-fab>
+        <ion-icon name="pin"></ion-icon>
+      </button>
+    </ion-fab>
+
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="../../assets/imgs/avatar.png">
+      </ion-avatar>
+      <h2>Ol' Granny</h2>
+      <p>Mallerstetter Str. 6, 92345 Dietfurt</p>
+    </ion-item>
+
+    <ion-item>
+      <a ion-button icon-left clear item-left href="https://www.google.com/maps/dir//Mallerstetter+Str.+6,+92345+Dietfurt" target="_blank">
+        <ion-icon name="navigate"></ion-icon>
+        Navigate
+      </a>
+      <button ion-button icon-left clear item-end>
+        <ion-icon name="checkmark"></ion-icon>
+        Finish delivery
+      </button>
+    </ion-item>
+
+  </ion-card>
 
   <ion-card>
     <ion-card-header>
-      Your Shoppinglists
+      <strong>Your Shoppinglists</strong>
     </ion-card-header>
 
     <ion-list>
