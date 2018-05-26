@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ShoppinglistsPage } from '../shoppinglists/shoppinglists';
 import { Geolocation } from '@ionic-native/geolocation';
-import { OintyApiProvider, ShoppingList } from '../../providers/ointy-api/ointy-api';
+import { OintyApiProvider, ShoppingList, Address } from '../../providers/ointy-api/ointy-api';
 
 import { TAGS } from '../../providers/ointy-api/ointy-api';
 import { LocalAwarenessProvider } from '../../providers/local-awareness/local-awareness';
@@ -17,6 +17,8 @@ export class HomePage {
   public shoppingLists: Array<ShoppingList>;
 
   public localShoppingLists: ShoppingList[];
+
+  public claimedShoppingList: ShoppingList;
 
   public TAGS = {
     GROCERY_STORE: {
@@ -46,6 +48,10 @@ export class HomePage {
       this.shoppingLists = data;
     });
 
+    ointy.getClaimedShoppingList().subscribe(data => {
+      this.claimedShoppingList = data;
+    });
+
 
     localAwareness.setCallback(this.onLocalShoppinglist)
 
@@ -66,6 +72,27 @@ export class HomePage {
 
   public onLocalShoppinglist(data: Array<ShoppingList>) {
     this.localShoppingLists = data;
+  }
+
+  public getStaticMap(address: Address) {
+    if (!address) {
+      return '';
+    }
+
+
+    let addressString = this.getAddressUriComponent(address);
+
+    return `https://maps.googleapis.com/maps/api/staticmap?center=${encodeURIComponent(addressString)}&zoom=15&scale=1&size=400x250&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C${encodeURIComponent(addressString)}`;
+  }
+
+  public getAddressUriComponent(address: Address) {
+    if (!address) {
+      return '';
+    }
+
+    let addressString = `${address.street} ${address.houseNumber}, ${address.zip} ${address.city}`;
+
+    return addressString;
   }
 
 }

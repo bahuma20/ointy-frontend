@@ -36,6 +36,10 @@ export class OintyApiProvider {
   removeItemByIndex(shoppinglistId: number, index: number) {
     this.http.delete(`${this.host}/shoppingList/${shoppinglistId}/item/${index}`).subscribe();
   }
+
+  getClaimedShoppingList() {
+    return this.http.get<ShoppingList>(`${this.host}/getClaimedShoppingList/${this.userId}`);
+  }
 }
 
 export interface ShoppingList {

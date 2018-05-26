@@ -24,23 +24,23 @@
   </ion-card>
 
 
-  <ion-card>
+  <ion-card *ngIf="claimedShoppingList">
     <ion-card-header>
-      <strong>Your current delivery</strong>
+      <strong>Your current job</strong>
     </ion-card-header>
 
-    <img src="https://maps.googleapis.com/maps/api/staticmap?center=unterbürg&zoom=15&scale=1&size=400x250&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7Cunterbürg">
+    <img src="{{getStaticMap(claimedShoppingList.owner.address)}}">
 
     <ion-item>
       <ion-avatar item-start>
         <img src="../../assets/imgs/avatar.png">
       </ion-avatar>
-      <h2>Ol' Granny</h2>
-      <p>Mallerstetter Str. 6, 92345 Dietfurt</p>
+      <h2>{{claimedShoppingList.owner.firstName}} {{claimedShoppingList.owner.lastName}}</h2>
+      <p>{{claimedShoppingList.owner.address.street}} {{claimedShoppingList.owner.address.houseNumber}}, {{claimedShoppingList.owner.address.zip}} {{claimedShoppingList.owner.address.city}}</p>
     </ion-item>
 
     <ion-item>
-      <a ion-button icon-left clear item-left href="https://www.google.com/maps/dir//Mallerstetter+Str.+6,+92345+Dietfurt" target="_blank">
+      <a ion-button icon-left clear item-left href="https://www.google.com/maps/dir//{{getAddressUriComponent(claimedShoppingList.owner.address)}}" target="_blank">
         <ion-icon name="navigate"></ion-icon>
         Navigate
       </a>
