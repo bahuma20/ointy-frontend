@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class OintyApiProvider {
 
+  // host: string = "http://localhost:8080";
   host: string = "http://172.16.60.245:8080";
   userId: number = 1;
 
@@ -38,7 +39,7 @@ export class OintyApiProvider {
   }
 
   getClaimedShoppingList() {
-    return this.http.get<ShoppingList>(`${this.host}/getClaimedShoppingList/${this.userId}`);
+    return this.http.get<Array<ShoppingList>>(`${this.host}/getClaimedShoppingList/${this.userId}`);
   }
 
   closeShoppingList(id: number) {

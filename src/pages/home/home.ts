@@ -16,9 +16,9 @@ export class HomePage {
 
   public shoppingLists: Array<ShoppingList>;
 
-  public localShoppingLists: ShoppingList[];
+  public localShoppingLists: Array<ShoppingList>;
 
-  public claimedShoppingList: ShoppingList;
+  public claimedShoppingLists: Array<ShoppingList>;
 
   public TAGS = {
     GROCERY_STORE: {
@@ -49,7 +49,7 @@ export class HomePage {
     });
 
     ointy.getClaimedShoppingList().subscribe(data => {
-      this.claimedShoppingList = data;
+      this.claimedShoppingLists = data;
     });
 
 

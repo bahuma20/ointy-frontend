@@ -24,7 +24,7 @@
   </ion-card>
 
 
-  <ion-card *ngIf="claimedShoppingList">
+  <ion-card *ngFor="let claimedShoppingList of claimedShoppingLists">
     <ion-card-header>
       <strong>Your current job</strong>
     </ion-card-header>
