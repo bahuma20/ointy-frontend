@@ -21,7 +21,7 @@ export class ShoppinglistsPage {
 
   public newItem: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private ointy: OintyApiProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public ointy: OintyApiProvider) {
     ointy.loadShoppingList(navParams.get('id')).subscribe(shoppingList => {
       console.log(shoppingList);
       this.shoppingList = shoppingList;
@@ -33,6 +33,8 @@ export class ShoppinglistsPage {
   }
 
   addItem() {
+    this.ointy.addItemToShoppingList(this.shoppingList.id, this.newItem)
+
     this.shoppingList.items.push(this.newItem);
 
     this.newItem = "";

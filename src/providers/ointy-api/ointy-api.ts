@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class OintyApiProvider {
 
-  host: string = "http://172.16.60.245:8080";
+  host: string = "http://localhost:8080/";
   userId: number = 1;
 
   constructor(private http: HttpClient) {
@@ -23,6 +23,10 @@ export class OintyApiProvider {
 
   loadShoppingList(shoppinglistId: number) {
     return this.http.get<ShoppingList>(`${this.host}/shoppingList/${shoppinglistId}`);
+  }
+
+  addItemToShoppingList(shoppinglistId: number, itemName: string) {
+    this.http.post(`${this.host}/shoppingList/${shoppinglistId}/item`,itemName).subscribe();
   }
 }
 
