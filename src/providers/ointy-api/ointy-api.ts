@@ -32,6 +32,10 @@ export class OintyApiProvider {
   getListsRelevantForUser(latitude: number, longitude: number) {
     return this.http.get<Array<ShoppingList>>(`${this.host}/getListsRelevantForUser/${this.userId}/${latitude}/${longitude}`);
   }
+
+  removeItemByIndex(shoppinglistId: number, index: number) {
+    this.http.delete(`${this.host}/shoppingList/${shoppinglistId}/item/${index}`).subscribe();
+  }
 }
 
 export interface ShoppingList {

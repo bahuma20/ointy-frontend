@@ -63,4 +63,13 @@ export class ShoppinglistsPage {
 
     this.newItem = "";
   }
+
+  removeItem(item: String) {
+    let itemsToFilter = this.shoppingList.items;
+    let index = itemsToFilter.findIndex((curItem) => curItem === item);
+    
+    this.ointy.removeItemByIndex(this.shoppingList.id, index);
+
+    this.shoppingList.items = itemsToFilter.filter(val => { return val != item } );
+  }
 }
