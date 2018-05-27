@@ -41,4 +41,8 @@ export class JobDetailPage {
     return `https://maps.googleapis.com/maps/api/staticmap?center=${encodeURIComponent(addressString)}&zoom=15&scale=1&size=400x250&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C${encodeURIComponent(addressString)}`;
   }
 
+  public claimShoppingList(id: number) {
+    this.ointy.claimShoppingList(id).subscribe();
+  }
+
 }
